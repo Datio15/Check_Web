@@ -5,7 +5,7 @@ class BasicAuthentication():
         try:
             response = requests.get(url)
             if response.status_code == 401:
-                basic_auth = reponse.headers['WWW-Authorization']
+                basic_auth = response.headers['WWW-Authenticate']
                 if "Basic" in basic_auth:
                     return True
                 else:
