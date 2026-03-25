@@ -13,7 +13,7 @@ class SavageWebScanner:
     def scanForComments(self):
         print(colored("[i] ","blue")+ "Checking for comments...")
         basic_auth = BasicAuthentication()
-        if basic_auth.check_basic_auth(url):
+        if basic_auth.check_basic_auth(self.target):
             print("User Basic Auth")
             username = input("Enter Username: ")
             password = input("Enter Password: ")
@@ -28,14 +28,14 @@ class SavageWebScanner:
     def checkForRobots(self):
         print(colored("[i] ","blue")+ "Checking for robots...")
         basic_auth = BasicAuthentication()
-        if basic_auth.check_basic_auth(url):
+        if basic_auth.check_basic_auth(self.target):
             print("User Basic Auth")
             username = input("Enter Username: ")
             password = input("Enter Password: ")
             s = basic_auth.createAuthSession(username, password)
         else :
             s = requests.Session()
-        if self.target.endwith("/"):
+        if self.target.endswith("/"):
             response = s.get(self.target + "robots.txt")
         else :
             response = s.get(self.target + "/robots.txt")
